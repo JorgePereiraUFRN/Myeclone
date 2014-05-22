@@ -6,21 +6,55 @@
 
 package br.ufrn.Myeclone.GUI;
 
+import java.util.Date;
+
+import javax.swing.JOptionPane;
+
+import br.ufrn.Myeclone.Exceptions.ServiceException;
+import br.ufrn.Myeclone.controler.Service.AtividadesService;
+import br.ufrn.Myeclone.model.Atividade;
+
 /**
  *
  * @author jorge
  */
 public class CadastrarAtividade extends javax.swing.JFrame {
+	
+	
+	AtividadesService atService = new AtividadesService();
+	
 
     /**
      * Creates new form CadastrarAtividade
      */
     public CadastrarAtividade() {
         initComponents();
+        
+        jCdata.setDate(new Date());;
     }
     
-    private void salvar(){
-        
+    private void salvar() throws ServiceException{
+    	
+    	Atividade atividade = new Atividade();
+    	
+    	atividade.setAtividade(jTatividade.getText().trim());
+    	atividade.setData(getdData());
+    	atividade.setDescricao(jTdescricao.getText().trim());
+    	atividade.setHorario(jthora.getText().trim());
+    	
+    	atService.create(atividade);
+    }
+    
+    private Date getdData(){
+    	
+    	int dia = jCdata.getDate().getDay();
+    	int mes = jCdata.getDate().getMonth();
+    	int ano = jCdata.getDate().getYear();
+    	
+    	Date data = new Date(ano, mes, dia);
+    	
+    	return data;
+    	
     }
     
     private void cancelar(){
@@ -165,7 +199,11 @@ public class CadastrarAtividade extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalvarActionPerformed
-        salvar();
+        try {
+			salvar();
+		} catch (ServiceException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage());
+		}
     }//GEN-LAST:event_jBsalvarActionPerformed
 
     private void jBcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelarActionPerformed

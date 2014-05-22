@@ -3,12 +3,20 @@ package br.ufrn.Myeclone.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 
 @Entity
+@Inheritance (strategy = InheritanceType.JOINED)
 public class Tarefa {
 
+	@Id
+    @GeneratedValue
 	private Long id;
+	
 	private String horario;
 	private Date data;
 	private Boolean cumprido;

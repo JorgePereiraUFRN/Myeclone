@@ -17,7 +17,7 @@ public abstract class GenericHibernateDAO<T, ID extends Serializable>
 	public static final String ENVIROMENT_DEVELOPMENT = "Eclone";
 
 	protected static final EntityManagerFactory factory = Persistence
-			.createEntityManagerFactory(ENVIROMENT_TEST);
+			.createEntityManagerFactory(ENVIROMENT_DEVELOPMENT);
 
 	EntityManager em = null;
 
