@@ -1,5 +1,7 @@
 package br.ufrn.Myeclone.DAO;
 
+import br.ufrn.Myeclone.model.Agenda;
+
 public class HibernateDAOFactory extends DAOFactory {
 
 	
@@ -16,7 +18,7 @@ public class HibernateDAOFactory extends DAOFactory {
 	@Override
 	AgendaDaoInterface getAgendaDaoInterface() {
 		// TODO Auto-generated method stub
-		//return instantiateDAO(AgendaDao.class);
+		return (AgendaDaoInterface) instantiateDAO(AgendaDao.class);
 	}
 	
 	

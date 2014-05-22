@@ -3,12 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/jorge/workspace/Myeclone/src/br/ufrn/Myeclone/GUI/EmaIl.java</file>
-            <file>file:/home/jorge/workspace/Myeclone/src/br/ufrn/Myeclone/GUI/Atividades.java</file>
-            <file>file:/home/jorge/workspace/Myeclone/src/br/ufrn/Myeclone/GUI/ConfiguracoesAtividade.java</file>
-            <file>file:/home/jorge/workspace/Myeclone/src/br/ufrn/Myeclone/GUI/Inicio.java</file>
-            <file>file:/home/jorge/workspace/Myeclone/src/br/ufrn/Myeclone/GUI/Gerais.java</file>
-            <file>file:/home/jorge/workspace/Myeclone/src/br/ufrn/Myeclone/GUI/RedesSociais.java</file>
+            <file>file:/home/jorge/git/Myeclone/Myeclone/src/br/ufrn/Myeclone/GUI/Inicio.java</file>
+            <file>file:/home/jorge/git/Myeclone/Myeclone/src/br/ufrn/Myeclone/GUI/Atividades.java</file>
+            <file>file:/home/jorge/git/Myeclone/Myeclone/src/br/ufrn/Myeclone/GUI/CadastrarAtividade.java</file>
         </group>
     </open-files>
 </project-private>
