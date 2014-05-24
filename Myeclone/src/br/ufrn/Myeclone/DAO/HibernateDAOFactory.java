@@ -16,10 +16,18 @@ public class HibernateDAOFactory extends DAOFactory {
     }
 
 	@Override
-	AgendaDaoInterface getAgendaDaoInterface() {
+	public AgendaDao getAgendaDAO() {
 		// TODO Auto-generated method stub
-		return (AgendaDaoInterface) instantiateDAO(AgendaDao.class);
+		return  (AgendaDao) instantiateDAO(AgendaDao.class);
 	}
+
+	@Override
+	public AtividadeDAO getAtividadeDAO() {
+		// TODO Auto-generated method stub
+		return (AtividadeDAO) instantiateDAO(AtividadeDAO.class);
+	}
+
+	
 	
 	
 	

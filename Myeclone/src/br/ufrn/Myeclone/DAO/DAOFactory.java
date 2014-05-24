@@ -26,7 +26,8 @@ public abstract class DAOFactory {
  
     // Add your DAO interfaces here
     
-    abstract AgendaDaoInterface getAgendaDaoInterface();
+    public abstract AgendaDao getAgendaDAO();
     
+    public abstract AtividadeDAO getAtividadeDAO();
    
 }

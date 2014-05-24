@@ -18,6 +18,17 @@ public class FBConnection {
 	public FBConnection(String at){
 		fb = new DefaultFacebookClient(at, "e0a0e740a7b895596c1c7beb4aa33dfd");	
 	}   
+	//APP ID = 131420027006200
+	//APP SECRET = e0a0e740a7b895596c1c7beb4aa33dfd
+	public FBConnection(String appId, String appSecret, String token) {
+		fb = new DefaultFacebookClient();
+        AccessToken accessToken = fb.obtainAppAccessToken(appId, appSecret);
+        String at = fb.obtainExtendedAccessToken(appId, appSecret, "CAAB3hpwGrPgBAPiKnJQMqi8aQB1ZBsuHd453deFeHZAIjjA3PzqZCtdPk1C8F8QJ6MTkkcKLlBZC3Rm2BZBFR3KCm8h7h6qbQRDRznPSigBPGN3loS4KGTUrxenAE5ey0B9nUeMbPxZCASiw84gceUBcKVXJGYLL4nUd6ufL4hsLO7vRbaVGJqjaf1IexcPjHHRTepSHmnYAZDZD").getAccessToken();
+        //String at = accessToken.getAccessToken();
+        
+        System.out.println(at);
+        fb = new DefaultFacebookClient(at, appSecret);	
+    }
         
         public void enviarMensagem(String msg){
             FacebookType publishMessageResponse =
@@ -61,9 +72,14 @@ public class FBConnection {
 		return amigos;
         }
         
+    	//APP ID = 131420027006200
+    	//APP SECRET = e0a0e740a7b895596c1c7beb4aa33dfd
+        
+        //TOKEN EXTENDIDO: CAAB3hpwGrPgBAGxmMHSZC5Myi4aozmhui7kT0f0v7e9w3PSpTFgLJlDIreM3VxJjubH4hsUh8WrRD8J9js1FnqmjBRE58tRoZABbzLhkKce6pbPWKrP7ZAAO2XUnYPDkQjq1aE7XLO7Go4uayilkHDQlZBoWZBDlZCnhC9jZCHCTdrlcycLeh4J3bJYl0fP9ZCUZD
+        //https://developers.facebook.com/tools/debug/accesstoken/ (Pega token normal)
         public static void main(String[] args){
-        	FBConnection fb = new FBConnection("CAAB3hpwGrPgBALBbTqMi7i6WXiZAZBGLiUf1QE2qlz9aQVcyRJAShtqq3OvqYWEBByqJ8vbxIHFyOplsHlgNvjquEJ6Q5IQRd3MSwWuIYwccko6G4OMg1NTDkJ5XGuQZB0X34z2PNtL6DPoaAb5DzvhpUds8FEvg0QZAxKvZCfgEKJKuEvZBJLOHDjTpZBr6tXM8avXGEEONwZDZD");
         	
+        	FBConnection fb = new FBConnection("131420027006200 ", "e0a0e740a7b895596c1c7beb4aa33dfd", "CAAB3hpwGrPgBAPiKnJQMqi8aQB1ZBsuHd453deFeHZAIjjA3PzqZCtdPk1C8F8QJ6MTkkcKLlBZC3Rm2BZBFR3KCm8h7h6qbQRDRznPSigBPGN3loS4KGTUrxenAE5ey0B9nUeMbPxZCASiw84gceUBcKVXJGYLL4nUd6ufL4hsLO7vRbaVGJqjaf1IexcPjHHRTepSHmnYAZDZD");
         	fb.enviarMensagem("Testando restfb");
        
         }

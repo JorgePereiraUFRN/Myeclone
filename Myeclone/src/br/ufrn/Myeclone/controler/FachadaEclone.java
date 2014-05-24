@@ -25,7 +25,6 @@ public class FachadaEclone {
 	public void setAgenda(Agenda agenda) {
 		this.agenda = agenda;
 	}
-
 	
 	public void executarAcoesProgramadas() {
 

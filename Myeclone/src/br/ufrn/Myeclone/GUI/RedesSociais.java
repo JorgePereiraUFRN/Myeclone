@@ -12,7 +12,7 @@ package br.ufrn.Myeclone.GUI;
  */
 public class RedesSociais extends javax.swing.JFrame {
 
-    /**
+    /**m
      * Creates new form RedesSociais
      */
     public RedesSociais() {
