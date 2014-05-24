@@ -17,13 +17,13 @@ public class HibernateDAOFactory extends DAOFactory {
 
 	@Override
 	public AgendaDao getAgendaDAO() {
-		// TODO Auto-generated method stub
+		
 		return  (AgendaDao) instantiateDAO(AgendaDao.class);
 	}
 
 	@Override
 	public AtividadeDAO getAtividadeDAO() {
-		// TODO Auto-generated method stub
+		
 		return (AtividadeDAO) instantiateDAO(AtividadeDAO.class);
 	}
 
