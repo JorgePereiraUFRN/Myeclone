@@ -13,10 +13,11 @@ public class AgendarPostagem extends AcoesCommand{
 
 	private String token;
 	static final DAOFactory factory = DAOFactory.instance(Atividade.class);
-	FBConnection fb;
+	private FBConnection fb;
+	private Atividade atividade;
 	public AgendarPostagem(String token, String mensagem, Date data, String horario ){
 		fb = new FBConnection(token);
-		Atividade atividade = new Atividade();
+		atividade = new Atividade();
 		atividade.setAtividade("postagemfb");
 		atividade.setCumprido(false);
 		atividade.setData(data);
@@ -27,7 +28,7 @@ public class AgendarPostagem extends AcoesCommand{
 	public void execute() {
 		//sincronizar o projeto para isso funcionar!!!!
 		EntityManager em = factory.getAtividadeDAO().getInstance();
-		
+		em.persist(atividade);
 	}
 
 }

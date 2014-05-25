@@ -1,3 +1,4 @@
+
 package br.ufrn.Myeclone.DAO;
 
 import br.ufrn.Myeclone.model.Agenda;
@@ -17,13 +18,13 @@ public class HibernateDAOFactory extends DAOFactory {
 
 	@Override
 	public AgendaDao getAgendaDAO() {
-		// TODO Auto-generated method stub
+		
 		return  (AgendaDao) instantiateDAO(AgendaDao.class);
 	}
 
 	@Override
 	public AtividadeDAO getAtividadeDAO() {
-		// TODO Auto-generated method stub
+		
 		return (AtividadeDAO) instantiateDAO(AtividadeDAO.class);
 	}
 
@@ -32,3 +33,4 @@ public class HibernateDAOFactory extends DAOFactory {
 	
 	
 }
+

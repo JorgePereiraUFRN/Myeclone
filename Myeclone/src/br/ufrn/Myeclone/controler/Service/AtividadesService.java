@@ -63,8 +63,25 @@ public class AtividadesService extends Service<Atividade> {
 
 	@Override
 	public Atividade update(Atividade entity) throws ServiceException {
-		// TODO Auto-generated method stub
+		
+		try {
+			if (validarAtividade(entity) && entity.getId() != null) {
+
+				try {
+					return AtividadeDAO.update(entity);
+				} catch (DAOException e) {
+					
+					throw new ServiceException("Erro ao alterar no BD "+e.getMessage());
+				}
+
+			}
+		} catch (ObjetoNuloException | ValorNuloException e) {
+			
+			throw new ServiceException(e.getMessage());
+		}
+
 		return null;
+		
 	}
 
 	@Override
@@ -81,8 +98,12 @@ public class AtividadesService extends Service<Atividade> {
 
 	@Override
 	public List<Atividade> list() throws ServiceException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		try {
+			return AtividadeDAO.findAll(Atividade.class);
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage());
+		}
 	}
 
 }
