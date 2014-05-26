@@ -1,3 +1,4 @@
+
 package br.ufrn.Myeclone.DAO;
 
 import br.ufrn.Myeclone.model.Agenda;
@@ -32,3 +33,4 @@ public class HibernateDAOFactory extends DAOFactory {
 	
 	
 }
+
