@@ -51,7 +51,10 @@ public class Atividades extends javax.swing.JFrame {
         }
     }
 
-    private void consultar(String text) {
+    private void consultar(String text) throws ServiceException {
+        
+        atividades = atService.listByName(text);
+        exibirDadosTabela(atividades);
 
     }
 
@@ -139,8 +142,8 @@ public class Atividades extends javax.swing.JFrame {
         jBpesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAtividades = new javax.swing.JTable();
-        jBnovo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jMenuItemCumprido.setText("Alterar estado da tarefa");
         jMenuItemCumprido.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -218,15 +221,15 @@ public class Atividades extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableAtividades);
 
-        jBnovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufrn/Myeclone/icones/relogio.png"))); // NOI18N
-        jBnovo.setText("Novo");
-        jBnovo.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setText("Propagandas");
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufrn/Myeclone/icones/relogio.png"))); // NOI18N
+        jButton1.setText("novo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBnovoActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Propagandas");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -243,7 +246,7 @@ public class Atividades extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBnovo)))
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -255,8 +258,8 @@ public class Atividades extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBnovo)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -319,13 +322,22 @@ public class Atividades extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItemCumpridoComponentShown
 
-    private void jBpesquisarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBpesquisarActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new CadastrarAtividade().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jBpesquisarActionPerformed(java.awt.event.ActionEvent evt) {try {
+        // GEN-FIRST:event_jBpesquisarActionPerformed
         consultar(jTpesquisar.getText().trim());
-    }// GEN-LAST:event_jBpesquisarActionPerformed
+        } catch (ServiceException ex) {
+            Logger.getLogger(Atividades.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     private void jBnovoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBnovoActionPerformed
         novo();
-    }// GEN-LAST:event_jBnovoActionPerformed
+    }
 
     /**
      * @param args the command line arguments
@@ -372,8 +384,8 @@ public class Atividades extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBnovo;
     private javax.swing.JButton jBpesquisar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMenuItemCumprido;
     private javax.swing.JMenuItem jMenuItemMostarTarefa;
