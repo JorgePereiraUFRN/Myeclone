@@ -6,6 +6,7 @@
 
 package br.ufrn.Myeclone.GUI;
 
+import java.awt.Component;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
@@ -30,7 +31,9 @@ public class CadastrarAtividade extends javax.swing.JFrame {
     public CadastrarAtividade() {
         initComponents();
         
-        jCdata.setDate(new Date());;
+        jCdata.setDate(new Date());
+        
+        setLocationRelativeTo(null);
     }
     
     private void salvar() throws ServiceException{
@@ -41,6 +44,7 @@ public class CadastrarAtividade extends javax.swing.JFrame {
     	atividade.setData(getdData());
     	atividade.setDescricao(jTdescricao.getText().trim());
     	atividade.setHorario(jthora.getText().trim());
+    	atividade.setCumprido(false);
     	
     	atService.create(atividade);
     }
@@ -58,7 +62,10 @@ public class CadastrarAtividade extends javax.swing.JFrame {
     }
     
     private void cancelar(){
-        
+        jthora.setText("");
+        jTatividade.setText("");
+        jTdescricao.setText("");
+       
     }
 
     /**
@@ -201,13 +208,18 @@ public class CadastrarAtividade extends javax.swing.JFrame {
     private void jBsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalvarActionPerformed
         try {
 			salvar();
+			JOptionPane.showMessageDialog(this, "Atividade salva com sucesso!", "Sucesso - Salvar", JOptionPane.INFORMATION_MESSAGE );
 		} catch (ServiceException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage());
 		}
     }//GEN-LAST:event_jBsalvarActionPerformed
 
     private void jBcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelarActionPerformed
-        cancelar();
+       
+        int cancel = JOptionPane.showConfirmDialog(this, "Deseja cancelar esta operação?", "Cancelar", JOptionPane.YES_NO_OPTION);
+        if(cancel == JOptionPane.YES_OPTION){
+        	 cancelar();
+        }
     }//GEN-LAST:event_jBcancelarActionPerformed
 
     /**
