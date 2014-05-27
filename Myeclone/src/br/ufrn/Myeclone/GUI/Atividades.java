@@ -28,46 +28,45 @@ import javax.swing.JTable;
  * @author jorge
  */
 public class Atividades extends javax.swing.JFrame {
-
+    
     private AtividadesService atService = new AtividadesService();
     private List<Atividade> atividades = new ArrayList<Atividade>();
-
+    
     private DefaultTableModel tmAtividades = new DefaultTableModel(null,
             new String[]{"Atividade", "Data", "Hora", "Cumprido"});
-
+    
     private ListSelectionModel lsmAtividades;
- 
-
+    
     public Atividades() {
         initComponents();
-
+        
         try {
             atividades = atService.list();
             exibirDadosTabela(atividades);
-
+            
         } catch (ServiceException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
-
+    
     private void consultar(String text) throws ServiceException {
         
         atividades = atService.listByName(text);
         exibirDadosTabela(atividades);
-
+        
     }
-
+    
     private void exibirDadosTabela(List<Atividade> atividades) {
-
+        
         while (tmAtividades.getRowCount() > 0) {
             tmAtividades.removeRow(0);
         }
-
+        
         SimpleDateFormat dtFormat = new SimpleDateFormat("dd-MM-yyyy");
-
+        
         String[] campos = new String[]{null, null, null, null};
-
+        
         for (int i = 0; i < atividades.size(); i++) {
             tmAtividades.addRow(campos);
             
@@ -75,19 +74,19 @@ public class Atividades extends javax.swing.JFrame {
             tmAtividades.setValueAt(
                     dtFormat.format(atividades.get(i).getData()), i, 1);
             tmAtividades.setValueAt(atividades.get(i).getHorario(), i, 2);
-
+            
             setarCelulaCumprido(i, atividades.get(i).isCumprido());
-
+            
         }
-
+        
     }
     
-    private void atualizarAtividade(Atividade atividade) throws ServiceException{
+    private void atualizarAtividade(Atividade atividade) throws ServiceException {
         atService.update(atividade);
     }
-
+    
     private class JTableRenderer extends DefaultTableCellRenderer {
-
+        
         protected void setValue(Object value) {
             if (value instanceof ImageIcon) {
                 if (value != null) {
@@ -102,17 +101,17 @@ public class Atividades extends javax.swing.JFrame {
             }
         }
     }
-
+    
     private void novo() {
-
+        
     }
-
+    
     private void setarCelulaCumprido(int linha, boolean cumprido) {
-
+        
         TableColumnModel columnModel = jTableAtividades.getColumnModel();
         JTableRenderer renderer = new JTableRenderer();
         columnModel.getColumn(3).setCellRenderer(renderer);
-
+        
         if (cumprido) {
             tmAtividades.setValueAt(new ImageIcon(
                     "src/br/ufrn/Myeclone/icones/cumprido.png"), linha, 3);
@@ -120,7 +119,7 @@ public class Atividades extends javax.swing.JFrame {
             tmAtividades.setValueAt(new ImageIcon(
                     "src/br/ufrn/Myeclone/icones/nao_cumprido.png"), linha, 3);
         }
-
+        
     }
 
     /**
@@ -168,6 +167,11 @@ public class Atividades extends javax.swing.JFrame {
         jPopupMenu.add(jSeparator1);
 
         jMenuItemMostarTarefa.setText("Exibir dados da tarefa");
+        jMenuItemMostarTarefa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemMostarTarefaActionPerformed(evt);
+            }
+        });
         jPopupMenu.add(jMenuItemMostarTarefa);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -280,7 +284,7 @@ public class Atividades extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableAtividadesMousePressed
 
     private void jMenuItemCumpridoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCumpridoActionPerformed
-        if(jTableAtividades.getSelectedRow() != -1){
+        if (jTableAtividades.getSelectedRow() != -1) {
             try {
                 Atividade at = atividades.get(jTableAtividades.getSelectedRow());
                 at.setCumprido(!at.isCumprido());
@@ -288,20 +292,18 @@ public class Atividades extends javax.swing.JFrame {
                 exibirDadosTabela(atividades);
                 //setarCelulaCumprido(jTableAtividades.getSelectedRow(), !at.isCumprido());
                 
-                
             } catch (ServiceException ex) {
                 Logger.getLogger(Atividades.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-        }else{
-            JOptionPane.showMessageDialog(this, "Selecione uma linha da tabela.","Selecionar linha", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma linha da tabela.", "Selecionar linha", JOptionPane.INFORMATION_MESSAGE);
         }        
     }//GEN-LAST:event_jMenuItemCumpridoActionPerformed
 
     private void jMenuItemCumpridoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jMenuItemCumpridoFocusGained
         
-            
-        
+
     }//GEN-LAST:event_jMenuItemCumpridoFocusGained
 
     private void jMenuItemCumpridoComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jMenuItemCumpridoComponentHidden
@@ -309,13 +311,12 @@ public class Atividades extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemCumpridoComponentHidden
 
     private void jMenuItemCumpridoComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jMenuItemCumpridoComponentShown
-       if(jTableAtividades.getSelectedRow() != -1){
+        if (jTableAtividades.getSelectedRow() != -1) {
             
-            
-            if(jTableAtividades.getSelectedColumn() == 3){
+            if (jTableAtividades.getSelectedColumn() == 3) {
                 jMenuItemCumprido.setText("Alterar estado Cumprido");
                 
-            }else{
+            } else {
                 jMenuItemCumprido.setText("Exibir Dados Tarefa");
             }
             
@@ -327,14 +328,24 @@ public class Atividades extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jBpesquisarActionPerformed(java.awt.event.ActionEvent evt) {try {
-        // GEN-FIRST:event_jBpesquisarActionPerformed
-        consultar(jTpesquisar.getText().trim());
+    private void jMenuItemMostarTarefaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMostarTarefaActionPerformed
+        if (jTableAtividades.getSelectedRow() != -1) { 
+            new CadastrarAtividade(atividades.get(jTableAtividades.getSelectedRow())).setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma linha da tabela.", "Selecionar linha", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_jMenuItemMostarTarefaActionPerformed
+    
+    private void jBpesquisarActionPerformed(java.awt.event.ActionEvent evt) {
+        try {
+            // GEN-FIRST:event_jBpesquisarActionPerformed
+            consultar(jTpesquisar.getText().trim());
         } catch (ServiceException ex) {
             Logger.getLogger(Atividades.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     private void jBnovoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBnovoActionPerformed
         novo();
     }
@@ -344,7 +355,7 @@ public class Atividades extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-		// <editor-fold defaultstate="collapsed"
+        // <editor-fold defaultstate="collapsed"
         // desc=" Look and feel setting code (optional) ">
 		/*
          * If Nimbus (introduced in Java SE 6) is not available, stay with the
@@ -373,7 +384,7 @@ public class Atividades extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Atividades.class.getName()).log(
                     java.util.logging.Level.SEVERE, null, ex);
         }
-		// </editor-fold>
+        // </editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

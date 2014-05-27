@@ -25,6 +25,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Exibir dados da tarefa"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemMostarTarefaActionPerformed"/>
+          </Events>
         </MenuItem>
       </SubComponents>
     </Container>
