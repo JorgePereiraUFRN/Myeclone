@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package br.ufrn.Myeclone.GUI;
 
-import java.awt.Component;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
@@ -13,90 +13,52 @@ import javax.swing.JOptionPane;
 import br.ufrn.Myeclone.Exceptions.ServiceException;
 import br.ufrn.Myeclone.controler.Service.AtividadesService;
 import br.ufrn.Myeclone.model.Atividade;
-import java.util.Calendar;
 
 /**
  *
  * @author jorge
  */
 public class CadastrarAtividade extends javax.swing.JFrame {
-
-    private AtividadesService atService = new AtividadesService();
-    private Atividade atividade;
+	
+	
+	AtividadesService atService = new AtividadesService();
+	
 
     /**
      * Creates new form CadastrarAtividade
      */
     public CadastrarAtividade() {
         initComponents();
-
-        jCdata.setDate(new Date());
-
-        setLocationRelativeTo(null);
-    }
-
-    public CadastrarAtividade(Atividade at) {
-        initComponents();
-
-        jCdata.setDate(new Date());
-
-        setLocationRelativeTo(null);
-        atividade = at;
-
-        if (atividade != null) {
-            jTatividade.setText(atividade.getAtividade());
-            jTdescricao.setText(atividade.getDescricao());
-            jthora.setText(atividade.getHorario());
-            jCdata.setDate(atividade.getData());
-        }
-
-        jBsalvar.setText("Alterar");
-    }
-
-    private void salvar() throws ServiceException {
-
-        Atividade atividade = new Atividade();
-
-        atividade.setAtividade(jTatividade.getText().trim());
-        atividade.setData(getdData());
-        atividade.setDescricao(jTdescricao.getText().trim());
-        atividade.setHorario(jthora.getText().trim());
-        atividade.setCumprido(false);
-
-        atService.create(atividade);
-    }
-
-    private void Alterar() throws ServiceException {
-
-        atividade.setAtividade(jTatividade.getText().trim());
-        atividade.setData(getdData());
-        atividade.setDescricao(jTdescricao.getText().trim());
-        atividade.setHorario(jthora.getText().trim());
-        atividade.setData(getdData());
-
-        atService.update(atividade);
-    }
-
-    private Date getdData() {
-
-        int dia = jCdata.getDate().getDay();
-        int mes = jCdata.getDate().getMonth();
-        int ano = jCdata.getDate().getYear();
         
-        Calendar c = Calendar.getInstance();
-        c.setTime(jCdata.getDate());
-        
-        System.out.println(c.toString());
-
-        return c.getTime();
-
+        jCdata.setDate(new Date());;
     }
-
-    private void cancelar() {
-        jthora.setText("");
-        jTatividade.setText("");
-        jTdescricao.setText("");
-
+    
+    private void salvar() throws ServiceException{
+    	
+    	Atividade atividade = new Atividade();
+    	
+    	atividade.setAtividade(jTatividade.getText().trim());
+    	atividade.setData(getdData());
+    	atividade.setDescricao(jTdescricao.getText().trim());
+    	atividade.setHorario(jthora.getText().trim());
+    	
+    	atService.create(atividade);
+    }
+    
+    private Date getdData(){
+    	
+    	int dia = jCdata.getDate().getDay();
+    	int mes = jCdata.getDate().getMonth();
+    	int ano = jCdata.getDate().getYear();
+    	
+    	Date data = new Date(ano, mes, dia);
+    	
+    	return data;
+    	
+    }
+    
+    private void cancelar(){
+        
     }
 
     /**
@@ -238,25 +200,14 @@ public class CadastrarAtividade extends javax.swing.JFrame {
 
     private void jBsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalvarActionPerformed
         try {
-            if (jBsalvar.getText().equals("Alterar")) {
-                Alterar();
-                JOptionPane.showMessageDialog(this, "Atividade alterada com sucesso!", "Sucesso - Alterar", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                salvar();
-                JOptionPane.showMessageDialog(this, "Atividade salva com sucesso!", "Sucesso - Salvar", JOptionPane.INFORMATION_MESSAGE);
-            }
-            
-        } catch (ServiceException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
+			salvar();
+		} catch (ServiceException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage());
+		}
     }//GEN-LAST:event_jBsalvarActionPerformed
 
     private void jBcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelarActionPerformed
-
-        int cancel = JOptionPane.showConfirmDialog(this, "Deseja cancelar esta operação?", "Cancelar", JOptionPane.YES_NO_OPTION);
-        if (cancel == JOptionPane.YES_OPTION) {
-            cancelar();
-        }
+        cancelar();
     }//GEN-LAST:event_jBcancelarActionPerformed
 
     /**

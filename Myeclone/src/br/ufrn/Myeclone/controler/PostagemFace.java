@@ -17,6 +17,7 @@ public class PostagemFace extends AcoesCommand{
 	}
 	@Override
 	public void execute() {
+		
 		//factory.getAtividadeDAO().findById(Atividade.class, 1);
 	}
 

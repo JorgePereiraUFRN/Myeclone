@@ -7,12 +7,10 @@ import br.ufrn.Myeclone.Exceptions.DAOException;
 import br.ufrn.Myeclone.Exceptions.ObjetoNuloException;
 import br.ufrn.Myeclone.Exceptions.ServiceException;
 import br.ufrn.Myeclone.model.Atividade;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class AtividadesService extends Service<Atividade> {
 
-	private AtividadesDaoInterface AtividadeDAO;
+	AtividadesDaoInterface AtividadeDAO;
 
 	public AtividadesService() {
 		AtividadeDAO = factory.getAtividadeDAO();
@@ -107,14 +105,5 @@ public class AtividadesService extends Service<Atividade> {
 			throw new ServiceException(e.getMessage());
 		}
 	}
-        
-        public List<Atividade> listByName(String name) throws ServiceException {
-            try {
-                return AtividadeDAO.listByName(name);
-            } catch (DAOException e) {
-                throw new ServiceException(e.getMessage());
-            }
-            
-        }
 
 }
