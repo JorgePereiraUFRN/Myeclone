@@ -6,5 +6,7 @@ import javax.persistence.Entity;
 
 @Entity
 public class Acao extends Tarefa{
+    
+   
 
 }

@@ -1,5 +1,6 @@
 package br.ufrn.Myeclone.model;
 
+import java.sql.Time;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -10,51 +11,49 @@ import javax.persistence.InheritanceType;
 
 import org.hibernate.annotations.NotFound;
 
-
 @Entity
-@Inheritance (strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Tarefa {
 
-	@Id
+    @Id
     @GeneratedValue
-	private Long id;
-	
-	private String horario;
-	private Date data;
-	private boolean cumprido;
+    private Long id;
 
-	public String getHorario() {
-		return horario;
-	}
-	
+    private Time horario;
+    private Date data;
+    private boolean cumprido;
 
-	public Long getId() {
-		return id;
-	}
+    public Time getHorario() {
+        return horario;
+    }
+
+    public void setHorario(Time horario) {
+        this.horario = horario;
+    }
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Date getData() {
+        return data;
+    }
 
-	public void setHorario(String horario) {
-		this.horario = horario;
-	}
+    public void setData(Date data) {
+        this.data = data;
+    }
 
-	public Date getData() {
-		return data;
-	}
+    public boolean isCumprido() {
+        return cumprido;
+    }
 
-	public void setData(Date data) {
-		this.data = data;
-	}
-
-	public boolean isCumprido() {
-		return cumprido;
-	}
-	
-	public void setCumprido(boolean cumprido) {
-		this.cumprido = cumprido;
-	}
+    public void setCumprido(boolean cumprido) {
+        this.cumprido = cumprido;
+    }
 
 }

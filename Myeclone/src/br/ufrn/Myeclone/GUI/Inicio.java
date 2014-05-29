@@ -6,6 +6,7 @@
 
 package br.ufrn.Myeclone.GUI;
 
+import br.ufrn.Myeclone.controler.VerificarTarefas;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
@@ -30,6 +31,8 @@ public class Inicio extends javax.swing.JFrame {
         telas.add(email);
         telas.add(redesSociais);
         telas.add(gerais);
+        
+        new VerificarTarefas().start();
         
     }
     
@@ -133,7 +136,8 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        exibirTela(atividades);
+        atividades = new Atividades();
+       exibirTela(atividades);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

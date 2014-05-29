@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import br.ufrn.Myeclone.Exceptions.ServiceException;
 import br.ufrn.Myeclone.controler.Service.AtividadesService;
 import br.ufrn.Myeclone.model.Atividade;
+import java.sql.Time;
 import java.util.Calendar;
 
 /**
@@ -46,7 +47,7 @@ public class CadastrarAtividade extends javax.swing.JFrame {
         if (atividade != null) {
             jTatividade.setText(atividade.getAtividade());
             jTdescricao.setText(atividade.getDescricao());
-            jthora.setText(atividade.getHorario());
+            jthora.setText(atividade.getHorario().getHours()+":"+atividade.getHorario().getMinutes());
             jCdata.setDate(atividade.getData());
         }
 
@@ -60,7 +61,7 @@ public class CadastrarAtividade extends javax.swing.JFrame {
         atividade.setAtividade(jTatividade.getText().trim());
         atividade.setData(getdData());
         atividade.setDescricao(jTdescricao.getText().trim());
-        atividade.setHorario(jthora.getText().trim());
+        atividade.setHorario(getHora());
         atividade.setCumprido(false);
 
         atService.create(atividade);
@@ -71,10 +72,26 @@ public class CadastrarAtividade extends javax.swing.JFrame {
         atividade.setAtividade(jTatividade.getText().trim());
         atividade.setData(getdData());
         atividade.setDescricao(jTdescricao.getText().trim());
-        atividade.setHorario(jthora.getText().trim());
+        atividade.setHorario(getHora());
         atividade.setData(getdData());
 
         atService.update(atividade);
+    }
+    
+    private  Time getHora(){
+        
+        Time t = null;
+        
+        if(!jthora.getText().equals("") && !jthora.getText().equals(":")){
+            String time[] = jthora.getText().trim().split(":");
+            
+            int hora = Integer.parseInt(time[0]);
+            int minutos = Integer.parseInt(time[1]);
+            
+            t = new Time(hora, minutos, 0);
+        }
+        
+        return t;
     }
 
     private Date getdData() {
@@ -125,7 +142,7 @@ public class CadastrarAtividade extends javax.swing.JFrame {
 
         jTextField2.setText("jTextField2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
