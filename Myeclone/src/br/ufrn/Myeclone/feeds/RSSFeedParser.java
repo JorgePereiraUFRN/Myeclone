@@ -1,5 +1,7 @@
 package br.ufrn.Myeclone.feeds;
 
+import br.ufrn.Myeclone.model.FeedMessage;
+import br.ufrn.Myeclone.model.Feed;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
