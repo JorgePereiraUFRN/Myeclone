@@ -27,12 +27,7 @@ public class EnviarEmail {
     public static String enviarEmail(final String login, final String senha, String destino, String assunto, String mensagem)
         {
           
-            Properties p = new Properties();
-            p.put("mail.smtp.host", "smtp.gmail.com");
-            p.put("mail.smtp.socketFactory.port", "465");
-            p.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
-            p.put("mail.smtp.auth", "true");
-            p.put("mail.smtp.port", "465");
+            Properties p = mountConnection();
  
             Session s = getSession(p, login, senha);
  
@@ -41,16 +36,26 @@ public class EnviarEmail {
  
                     System.out.println("Enviado");
                         
-                    return "Mensagem enviada com sucesso para" + destino ;
+                    return "Mensagem enviada com sucesso para " + destino ;
  
 		} 
             
             catch (MessagingException e)
                  {
-                     throw new RuntimeException(e);                  
+                    return "Falha no envio da mensagem para " + destino ;                
                  }
             
         }
+
+    private static Properties mountConnection() {
+        Properties p = new Properties();
+        p.put("mail.smtp.host", "smtp.gmail.com");
+        p.put("mail.smtp.socketFactory.port", "465");
+        p.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
+        p.put("mail.smtp.auth", "true");
+        p.put("mail.smtp.port", "465");
+        return p;
+    }
 
     private static void sendMessage(Session s, final String login, String destino, String assunto, String mensagem) throws MessagingException {
         Message m = new MimeMessage(s);
