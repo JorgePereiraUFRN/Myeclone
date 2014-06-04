@@ -31,4 +31,6 @@ public abstract class DAOFactory {
     public abstract AtividadeDAO getAtividadeDAO();
    
     public abstract PostagemDAO getPostagemDAO();
+    
+    public abstract FeedDao getFeedDao();
 }
