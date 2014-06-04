@@ -11,6 +11,7 @@ import br.ufrn.Myeclone.DAO.HibernateDAOFactory;
 import br.ufrn.Myeclone.Exceptions.DAOException;
 import br.ufrn.Myeclone.apifb.FBConnection;
 import br.ufrn.Myeclone.model.Atividade;
+import java.sql.Time;
 
 public class AgendarPostagem extends AcoesCommand{
 
@@ -20,7 +21,7 @@ public class AgendarPostagem extends AcoesCommand{
 	protected static final DAOFactory factory = DAOFactory.instance(HibernateDAOFactory.class);
 	private FBConnection fb;
 	private Atividade atividade;
-	public AgendarPostagem(String token, String mensagem, Date data, String horario ){
+	public AgendarPostagem(String token, String mensagem, Date data, Time horario ){
 		atividadeDAO = factory.getAtividadeDAO();
 		//fb = new FBConnection(token); 	
 		atividade = new Atividade();
@@ -47,7 +48,7 @@ public class AgendarPostagem extends AcoesCommand{
 		
 		Calendar c = Calendar.getInstance();
 		c.set(2014, 5, 25);
-		AgendarPostagem agenda = new AgendarPostagem("CAAB3hpwGrPgBAGxmMHSZC5Myi4aozmhui7kT0f0v7e9w3PSpTFgLJlDIreM3VxJjubH4hsUh8WrRD8J9js1FnqmjBRE58tRoZABbzLhkKce6pbPWKrP7ZAAO2XUnYPDkQjq1aE7XLO7Go4uayilkHDQlZBoWZBDlZCnhC9jZCHCTdrlcycLeh4J3bJYl0fP9ZCUZD", "Testando RestFB", c.getTime(), "22:30");
+		AgendarPostagem agenda = new AgendarPostagem("CAAB3hpwGrPgBAGxmMHSZC5Myi4aozmhui7kT0f0v7e9w3PSpTFgLJlDIreM3VxJjubH4hsUh8WrRD8J9js1FnqmjBRE58tRoZABbzLhkKce6pbPWKrP7ZAAO2XUnYPDkQjq1aE7XLO7Go4uayilkHDQlZBoWZBDlZCnhC9jZCHCTdrlcycLeh4J3bJYl0fP9ZCUZD", "Testando RestFB", c.getTime(), new Time(22, 30, 00));
 		agenda.execute();
 	}
 	

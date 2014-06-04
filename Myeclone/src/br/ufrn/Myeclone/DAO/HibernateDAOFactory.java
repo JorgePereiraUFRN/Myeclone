@@ -27,7 +27,7 @@ public class HibernateDAOFactory extends DAOFactory {
 		
 		return (AtividadeDAO) instantiateDAO(AtividadeDAO.class);
 	}
-
+	
 	@Override
 	public PostagemDAO getPostagemDAO() {
 		

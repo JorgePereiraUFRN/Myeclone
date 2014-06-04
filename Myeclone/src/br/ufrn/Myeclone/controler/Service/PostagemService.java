@@ -1,5 +1,6 @@
 package br.ufrn.Myeclone.controler.Service;
 
+import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -37,10 +38,6 @@ public class PostagemService extends Service<Postagem> {
 
 		if (postagem.getData() == null) {
 			throw new ValorNuloException("postagem.data is null");
-		}
-
-		if (postagem.getHorario().trim().equals("")) {
-			throw new ValorNuloException("postagem.horario is null");
 		}
 
 		return true;
@@ -104,7 +101,7 @@ public class PostagemService extends Service<Postagem> {
 		c.set(2014, 5, 25);
 		p.setToken("CAAB3hpwGrPgBAGxmMHSZC5Myi4aozmhui7kT0f0v7e9w3PSpTFgLJlDIreM3VxJjubH4hsUh8WrRD8J9js1FnqmjBRE58tRoZABbzLhkKce6pbPWKrP7ZAAO2XUnYPDkQjq1aE7XLO7Go4uayilkHDQlZBoWZBDlZCnhC9jZCHCTdrlcycLeh4J3bJYl0fP9ZCUZD");
 		p.setDescricao("Testando RestFB");
-		p.setHorario("22:30");
+		p.setHorario(new Time(22, 30, 0));
 		p.setAtividade("postagemfb");
 		p.setCumprido(false);
 		p.setData(c.getTime());

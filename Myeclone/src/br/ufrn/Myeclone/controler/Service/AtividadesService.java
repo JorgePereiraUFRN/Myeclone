@@ -7,6 +7,9 @@ import br.ufrn.Myeclone.Exceptions.DAOException;
 import br.ufrn.Myeclone.Exceptions.ObjetoNuloException;
 import br.ufrn.Myeclone.Exceptions.ServiceException;
 import br.ufrn.Myeclone.model.Atividade;
+import java.sql.Time;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AtividadesService extends Service<Atividade> {
 
@@ -31,7 +34,7 @@ public class AtividadesService extends Service<Atividade> {
 			throw new ValorNuloException("atividade.data is null");
 		}
 
-		if (atividade.getHorario().trim().equals("")) {
+		if (atividade.getHorario() == null) {
 			throw new ValorNuloException("atividade.horario is null");
 		}
 
@@ -105,5 +108,24 @@ public class AtividadesService extends Service<Atividade> {
 			throw new ServiceException(e.getMessage());
 		}
 	}
+        
+        public List<Atividade> listByName(String name) throws ServiceException {
+            try {
+                return AtividadeDAO.listByName(name);
+            } catch (DAOException e) {
+                throw new ServiceException(e.getMessage());
+            }
+            
+        }
+        
+        
+        public List<Atividade> listByHora(Time inicio, Time fim) throws ServiceException {
+            try {
+                return AtividadeDAO.listByHour(inicio, fim);
+            } catch (DAOException e) {
+                throw new ServiceException(e.getMessage());
+            }
+            
+        }
 
 }
