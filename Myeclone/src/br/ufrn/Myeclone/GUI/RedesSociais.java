@@ -8,7 +8,7 @@ package br.ufrn.Myeclone.GUI;
 
 /**
  *
- * @author jorge
+ * @author firzen
  */
 public class RedesSociais extends javax.swing.JFrame {
 
