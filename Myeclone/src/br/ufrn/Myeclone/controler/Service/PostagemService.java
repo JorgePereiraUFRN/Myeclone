@@ -89,9 +89,12 @@ public class PostagemService extends Service<Postagem> {
 	}
 
 	@Override
-	public List<Postagem> list() throws ServiceException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Postagem> list() throws ServiceException {		
+		try {
+                    return postagemDAO.findAll(Postagem.class);
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage());
+		}
 	}
 
 	public static void main(String args[]){
