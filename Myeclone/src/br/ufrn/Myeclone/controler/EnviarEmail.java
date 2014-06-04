@@ -22,7 +22,7 @@ public class EnviarEmail {
 		Session session = Session.getDefaultInstance(props,
 			new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("leyenasd@gmail.com","vigorolass");
+					return new PasswordAuthentication("leyenasd@gmail.com","");
 				}
 			});
  
