@@ -15,6 +15,8 @@ import br.ufrn.Myeclone.Exceptions.ServiceException;
 import br.ufrn.Myeclone.controler.AgendarPostagem;
 import br.ufrn.Myeclone.model.Atividade;
 import br.ufrn.Myeclone.model.Postagem;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PostagemService extends Service<Postagem> {
 
@@ -69,14 +71,34 @@ public class PostagemService extends Service<Postagem> {
 
 	@Override
 	public Postagem update(Postagem entity) throws ServiceException {
-		// TODO Auto-generated method stub
+		
+		try {
+			if (validarPostagem(entity) && entity.getId() != null) {
+
+				try {
+					return postagemDAO.update(entity);
+				} catch (DAOException e) {
+					
+					throw new ServiceException("Erro ao alterar no BD "+e.getMessage());
+				}
+
+			}
+		} catch (ObjetoNuloException | ValorNuloException e) {
+			
+			throw new ServiceException(e.getMessage());
+		}
+
 		return null;
 	}
 
 	@Override
 	public void destroy(Postagem entity) throws ServiceException {
-		// TODO Auto-generated method stub
-		
+            try {
+                postagemDAO.delete(entity);
+            } catch (DAOException ex) {
+                throw new ServiceException("Erro ao deletar a postagem")
+            }
+
 	}
 
 	@Override

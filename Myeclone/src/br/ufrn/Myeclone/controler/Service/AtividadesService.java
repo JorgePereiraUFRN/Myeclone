@@ -89,6 +89,7 @@ public class AtividadesService extends Service<Atividade> {
 
 	@Override
 	public void destroy(Atividade entity) throws ServiceException {
+            
 		// TODO Auto-generated method stub
 
 	}
