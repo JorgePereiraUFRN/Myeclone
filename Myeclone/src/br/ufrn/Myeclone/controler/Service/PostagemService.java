@@ -96,7 +96,7 @@ public class PostagemService extends Service<Postagem> {
             try {
                 postagemDAO.delete(entity);
             } catch (DAOException ex) {
-                throw new ServiceException("Erro ao deletar a postagem")
+                throw new ServiceException("Erro ao deletar a postagem");
             }
 
 	}
