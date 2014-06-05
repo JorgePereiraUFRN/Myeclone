@@ -14,7 +14,7 @@ public class HibernateDAOFactory extends DAOFactory {
         }
     }
 
-<<<<<<< HEAD
+
 	@Override
 	public AgendaDao getAgendaDAO() {
 		
@@ -33,34 +33,10 @@ public class HibernateDAOFactory extends DAOFactory {
 		return (PostagemDAO) instantiateDAO(PostagemDAO.class);
 	}
 
-	
-	
-	
-	
-}
-=======
-    @Override
-    public AgendaDao getAgendaDAO() {
 
-        return (AgendaDao) instantiateDAO(AgendaDao.class);
-    }
-
-    @Override
-    public AtividadeDAO getAtividadeDAO() {
-
-        return (AtividadeDAO) instantiateDAO(AtividadeDAO.class);
-    }
->>>>>>> ea5ae018201e54d246c341612feca6896e5b056d
-
-    @Override
-    public PostagemDAO getPostagemDAO() {
-
-        return (PostagemDAO) instantiateDAO(PostagemDAO.class);
-    }
-
-    @Override
-    public FeedDao getFeedDao() {
-        return (FeedDao) instantiateDAO(FeedDao.class);
-    }
-
+	@Override
+	public FeedDao getFeedDao() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

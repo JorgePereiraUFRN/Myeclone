@@ -109,6 +109,7 @@ public class RedesSociais extends javax.swing.JFrame {
         if(validarToken(token)){
             post.setToken(token);
             post.setVisible(true);
+            this.setVisible(false);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
