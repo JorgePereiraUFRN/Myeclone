@@ -10,7 +10,9 @@ package br.ufrn.Myeclone.controler;
 import br.ufrn.Myeclone.Exceptions.ServiceException;
 import br.ufrn.Myeclone.GUI.Alerta;
 import br.ufrn.Myeclone.controler.Service.AtividadesService;
+import br.ufrn.Myeclone.controler.Service.PostagemService;
 import br.ufrn.Myeclone.model.Atividade;
+import br.ufrn.Myeclone.model.Postagem;
 import java.sql.Time;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,7 +25,9 @@ import java.util.logging.Logger;
 public class VerificarTarefas extends Thread{
     
    private  AtividadesService atService = new AtividadesService();
+   private  PostagemService postService = new PostagemService();
    private List<Atividade> atividades;
+   private List<Postagem> postagens;
    private Time antes, agora;
    
    private Alerta alerta;
@@ -54,7 +58,7 @@ public class VerificarTarefas extends Thread{
                antes = getHoraAnterior(agora, 30);
                
                atividades = atService.listByHora(antes, agora);
-               
+               postagens = postService.list();
                for(Atividade at: atividades){
  
                    
@@ -88,7 +92,7 @@ public class VerificarTarefas extends Thread{
        
        
       
-       
+ 
    }
     
     

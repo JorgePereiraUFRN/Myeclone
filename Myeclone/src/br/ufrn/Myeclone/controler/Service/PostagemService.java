@@ -136,7 +136,15 @@ public class PostagemService extends Service<Postagem> {
 			e.printStackTrace();
 		}
 			
-	}
+        }
+        public List<Postagem> listByHora(Time inicio, Time fim) throws ServiceException {
+            try {
+                return postagemDAO.listByHour(inicio, fim);
+            } catch (DAOException e) {
+                throw new ServiceException(e.getMessage());
+            }
+            
+        }
 }
 		
 		
