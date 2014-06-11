@@ -9,6 +9,8 @@ package br.ufrn.Myeclone.GUI;
 import br.ufrn.Myeclone.controler.EnviarEmail;
 import java.awt.Color;
 import java.util.Arrays;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -20,6 +22,7 @@ public class EmailNovo extends javax.swing.JFrame {
      * Creates new form EmailNovo
      */
     public EmailNovo() {
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initComponents();
     }
 

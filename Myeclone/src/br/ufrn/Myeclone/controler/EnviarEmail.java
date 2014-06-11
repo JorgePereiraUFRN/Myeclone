@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 public class EnviarEmail {
 	public static void main(String[] args) {
             // main para teste de funcionamento
-		enviarEmail("login", "senha", "destinatário", "Assunto", "Corpo mensagem");
+		System.out.println(enviarEmail("leyenasd@gmail.com", "", "leyenasd@gmail.com", "PGP", "Mensagem"));
 	}
 
     /**

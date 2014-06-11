@@ -12,6 +12,7 @@ import br.ufrn.Myeclone.DAO.PostagemDaoInterface;
 import br.ufrn.Myeclone.Exceptions.DAOException;
 import br.ufrn.Myeclone.Exceptions.ObjetoNuloException;
 import br.ufrn.Myeclone.Exceptions.ServiceException;
+import br.ufrn.Myeclone.apifb.FBConnection;
 import br.ufrn.Myeclone.controler.AgendarPostagem;
 import br.ufrn.Myeclone.model.Atividade;
 import br.ufrn.Myeclone.model.Postagem;
@@ -144,6 +145,11 @@ public class PostagemService extends Service<Postagem> {
                 throw new ServiceException(e.getMessage());
             }
             
+        }
+        
+        public void postar(String mensagem){
+            FBConnection fb = new FBConnection("131420027006200 ", "e0a0e740a7b895596c1c7beb4aa33dfd", "CAAB3hpwGrPgBAPiKnJQMqi8aQB1ZBsuHd453deFeHZAIjjA3PzqZCtdPk1C8F8QJ6MTkkcKLlBZC3Rm2BZBFR3KCm8h7h6qbQRDRznPSigBPGN3loS4KGTUrxenAE5ey0B9nUeMbPxZCASiw84gceUBcKVXJGYLL4nUd6ufL4hsLO7vRbaVGJqjaf1IexcPjHHRTepSHmnYAZDZD");
+            fb.enviarMensagem(mensagem);
         }
 }
 		

@@ -58,10 +58,12 @@ public class VerificarTarefas extends Thread{
                antes = getHoraAnterior(agora, 30);
                
                atividades = atService.listByHora(antes, agora);
-               postagens = postService.list();
+               postagens = postService.listByHora(antes, agora);
+               for(Postagem p: postagens){
+                   postService.postar(p.getDescricao()); 
+               }
+               
                for(Atividade at: atividades){
- 
-                   
                    alerta = new Alerta(at.getAtividade(), at.getDescricao());
                    alerta.setVisible(true);
                    
